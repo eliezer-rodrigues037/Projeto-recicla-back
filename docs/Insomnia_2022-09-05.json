@@ -1,0 +1,423 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2022-09-05T12:31:46.031Z",
+  "__export_source": "insomnia.desktop.app:v2022.5.0",
+  "resources": [
+    {
+      "_id": "req_ac77973e985749e1bec841f1f30b9c9d",
+      "parentId": "fld_bf2391d06b284e7e96c51bfe37ed5a93",
+      "modified": 1662381060974,
+      "created": 1661015700878,
+      "url": "{{ _.techStackBaseUrl }}/auth/login",
+      "name": "Login",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"email\": \"carlos@teste.com\",\n\t\"password\": \"Teste123@\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_ada5bee33dcb44259840fc02834cc350"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1654311065193,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_bf2391d06b284e7e96c51bfe37ed5a93",
+      "parentId": "wrk_3fe2efa3ffa445d7bb8a5b68806626be",
+      "modified": 1660080291440,
+      "created": 1660080291440,
+      "name": "Authentication",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1000000050,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_3fe2efa3ffa445d7bb8a5b68806626be",
+      "parentId": null,
+      "modified": 1660424666103,
+      "created": 1660080291395,
+      "name": "Tech Stack",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_ea7d20e9e70f416182d3ad276ccb852c",
+      "parentId": "fld_bf2391d06b284e7e96c51bfe37ed5a93",
+      "modified": 1662381060410,
+      "created": 1660080291482,
+      "url": "{{ _.techStackBaseUrl }}/auth/forgot",
+      "name": "Forgot Password",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"email\": \"carlos@teste.com\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_ada5bee33dcb44259840fc02834cc350"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1654270069750,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_1a1fa8228595473cae3f2c9149aafa7a",
+      "parentId": "fld_bf2391d06b284e7e96c51bfe37ed5a93",
+      "modified": 1662381058896,
+      "created": 1660080291469,
+      "url": "{{ _.techStackBaseUrl }}/auth/reset",
+      "name": "Reset Password",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"email\": \"carlos@teste.com\",\n\t\"token\": \"E94CE95F\",\n\t\"password\": \"Teste123@\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_ada5bee33dcb44259840fc02834cc350"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1654188078864,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_604d0632f08e4e2697d8af0836666dc1",
+      "parentId": "fld_bf2391d06b284e7e96c51bfe37ed5a93",
+      "modified": 1661461424151,
+      "created": 1660080291492,
+      "url": "{{ _.techStackBaseUrl }}/auth/jwt/{{ _.token }}",
+      "name": "Get User by Token",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1654188078814,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_e2780b74f8cd439ca00e93ae6f054302",
+      "parentId": "fld_6f6e10612efc48b3b82369d3f90b4c38",
+      "modified": 1662381048833,
+      "created": 1660080291501,
+      "url": "{{ _.techStackBaseUrl }}/users",
+      "name": "Create",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Carlos Miranda\",\n\t\"username\": \"teste_username\",\n\t\"email\": \"teste@teste.com\",\n\t\"password\": \"Teste123@\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_bc637db19a1d4a2b894a80cafdb90811"
+        }
+      ],
+      "authentication": { "type": "bearer", "token": "{{ _.token }}" },
+      "metaSortKey": -1654352297925,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_6f6e10612efc48b3b82369d3f90b4c38",
+      "parentId": "wrk_3fe2efa3ffa445d7bb8a5b68806626be",
+      "modified": 1660080291497,
+      "created": 1660080291497,
+      "name": "Users",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1000000025,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_94ee427c66e24c3885efa90f9cf724a3",
+      "parentId": "fld_6f6e10612efc48b3b82369d3f90b4c38",
+      "modified": 1662381048265,
+      "created": 1660080291499,
+      "url": "{{ _.techStackBaseUrl }}/users",
+      "name": "Get All",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "id": "pair_d229ae87cad5452e840f9c42084c5f13",
+          "name": "page",
+          "value": "0",
+          "description": ""
+        },
+        {
+          "id": "pair_61921f5561194fad9990ea2e67b35cdb",
+          "name": "pageSize",
+          "value": "5",
+          "description": ""
+        },
+        {
+          "id": "pair_2080ea00223849b4a6655b491554d5df",
+          "name": "q",
+          "value": "",
+          "description": ""
+        }
+      ],
+      "headers": [],
+      "authentication": { "type": "bearer", "token": "{{ _.token }}" },
+      "metaSortKey": -1654352297875,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_2c43b261cc2843dfb97737db436d268e",
+      "parentId": "fld_6f6e10612efc48b3b82369d3f90b4c38",
+      "modified": 1662381047478,
+      "created": 1660080291503,
+      "url": "{{ _.techStackBaseUrl }}/users/d69db5fa-8afc-4e4d-bf4d-54272ed808e0",
+      "name": "Get by ID",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": { "type": "bearer", "token": "{{ _.token }}" },
+      "metaSortKey": -1654352179255.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_55298102632e4cf0bbeda3c2d0ac1851",
+      "parentId": "fld_6f6e10612efc48b3b82369d3f90b4c38",
+      "modified": 1662381046680,
+      "created": 1660080291512,
+      "url": "{{ _.techStackBaseUrl }}/users/d69db5fa-8afc-4e4d-bf4d-54272ed808e0/avatar",
+      "name": "Add /  Change avatar",
+      "description": "",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "multipart/form-data",
+        "params": [
+          {
+            "id": "pair_0fa07d1003ad413d8f98f623d2918169",
+            "name": "avatar",
+            "value": "",
+            "description": "",
+            "type": "file",
+            "fileName": "/home/mind-developer/Downloads/avatar.jpeg"
+          }
+        ]
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "multipart/form-data",
+          "id": "pair_bc637db19a1d4a2b894a80cafdb90811"
+        }
+      ],
+      "authentication": { "type": "bearer", "token": "{{ _.token }}" },
+      "metaSortKey": -1654352179230.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_9acd47fc60044b3283ec94f3975a6674",
+      "parentId": "fld_6f6e10612efc48b3b82369d3f90b4c38",
+      "modified": 1662381046140,
+      "created": 1660827757729,
+      "url": "{{ _.techStackBaseUrl }}/users/d69db5fa-8afc-4e4d-bf4d-54272ed808e0/remove-avatar",
+      "name": "Remove avatar",
+      "description": "",
+      "method": "PATCH",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": { "type": "bearer", "token": "{{ _.token }}" },
+      "metaSortKey": -1654352179218,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_00c4cba828c3434088d04af794a70028",
+      "parentId": "fld_6f6e10612efc48b3b82369d3f90b4c38",
+      "modified": 1662381043146,
+      "created": 1660080291505,
+      "url": "{{ _.techStackBaseUrl }}/users/d69db5fa-8afc-4e4d-bf4d-54272ed808e0",
+      "name": "Update",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Carlos Eduardo\",\n\t\"username\": \"carlos-edu\",\n\t\"email\": \"carlos@teste.com\",\n\t\"phone\": \"(11) 99999-9999\",\n\t\"password\": \"Teste123@\",\n\t\"role\": \"Admin\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_bc637db19a1d4a2b894a80cafdb90811"
+        }
+      ],
+      "authentication": { "type": "bearer", "token": "{{ _.token }}" },
+      "metaSortKey": -1654352179205.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_c5ff931710a047b0908bcfc3f2f90ae3",
+      "parentId": "fld_6f6e10612efc48b3b82369d3f90b4c38",
+      "modified": 1662381042492,
+      "created": 1660080291509,
+      "url": "{{ _.techStackBaseUrl }}/users/4372d8e8-05a5-43e0-83b5-2dee0a71b894",
+      "name": "Delete",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": { "type": "bearer", "token": "{{ _.token }}" },
+      "metaSortKey": -1654352179155.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_8b2e03205b1f4a95b90a858b7f6409b0",
+      "parentId": "wrk_3fe2efa3ffa445d7bb8a5b68806626be",
+      "modified": 1662305770794,
+      "created": 1660080291398,
+      "name": "Base Environment",
+      "data": {
+        "techStackBaseUrl": "http://localhost:3333",
+        "token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ2OWRiNWZhLThhZmMtNGU0ZC1iZjRkLTU0MjcyZWQ4MDhlMCIsImVtYWlsIjoicG9sb21pcmFuZGFAb3V0bG9vay5jb20iLCJpYXQiOjE2NjIzMDI5MzMsImV4cCI6MTY2MjM4OTMzM30.ircY7Bl0nikxs1SOmXvS7UYgXtJ76n_Vy3GNO2rEPOAbetKPjGstjnpKZPX3cj8SwkPbA-nbE5NJveajkZEaDw"
+      },
+      "dataPropertyOrder": { "&": ["techStackBaseUrl", "token"] },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1660068060011,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_d65d73154a974c5f9b3794daaf51af9c",
+      "parentId": "wrk_3fe2efa3ffa445d7bb8a5b68806626be",
+      "modified": 1661017927556,
+      "created": 1660080291413,
+      "name": "Default Jar",
+      "cookies": [
+        {
+          "id": "6be6181b-ce2b-4b5b-98a5-d3acef57d45b",
+          "key": "jwt",
+          "value": "{{ _.token }}",
+          "domain": "http://localhost:3333",
+          "expires": "2038-01-19T03:14:07.000Z",
+          "path": "/",
+          "secure": true,
+          "httpOnly": false
+        }
+      ],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "spc_3730dc2b10ce4d2fb7a53df9cce657a4",
+      "parentId": "wrk_3fe2efa3ffa445d7bb8a5b68806626be",
+      "modified": 1660080291520,
+      "created": 1660080291428,
+      "fileName": "Tech Stack Training",
+      "contents": "",
+      "contentType": "yaml",
+      "_type": "api_spec"
+    }
+  ]
+}
