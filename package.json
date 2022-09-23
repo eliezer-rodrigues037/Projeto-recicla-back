@@ -9,7 +9,8 @@
     "build": "tsc",
     "start": "node -r dotenv/config ./dist/src/server.js",
     "migrate": "yarn prisma migrate deploy",
-    "seed":"yarn prisma db seed"
+    "seed": "yarn prisma db seed",
+    "generate":"prisma generate"
   },
   "prisma": {
     "seed": "tsnd prisma/seed.ts"
