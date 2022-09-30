@@ -16,19 +16,40 @@ enum UserRole {
   User
 }
 
+enum Entity {
+  fisica
+  juridica
+}
+
 model User {
-  id                     String    @id @default(uuid())
+  identificador          String    @id @default(uuid())
   name                   String
-  username               String    @unique
   email                  String    @unique
-  password               String
-  phone                  String?
+  cpf                    String    @unique
+  cel                    String?
+  birthDate              DateTime
   role                   UserRole? @default(User)
+  password               String
   avatar                 String?
   password_reset_token   String?
   password_reset_expires DateTime?
   created_at             DateTime  @default(now())
   updated_at             DateTime  @updatedAt
+  Banc                   Banc[]
 
   @@map("users")
+}
+
+model Banc {
+  id            String @id @default(uuid())
+  userId        String
+  user          User   @relation(fields: [userId], references: [identificador])
+  accountOwner  String
+  cpf           String
+  entity        Entity @default(fisica)
+  banc          String
+  agencyNumber  String
+  agencyDg      String
+  accountNumber String
+  accountDg     String
 }
