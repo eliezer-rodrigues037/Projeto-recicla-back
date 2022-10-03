@@ -1,8 +1,8 @@
+import { Banc, User } from "@prisma/client";
 /* eslint-disable prefer-destructuring */
 import bcrypt from "bcrypt";
 import { platform } from "process";
 import { unlink } from "fs";
-import { User } from "@prisma/client";
 import { UserRows } from "../../types/UserRows";
 import { IUserService } from "../../interfaces/IUserService";
 import prismaClient from "../../database/index";
@@ -27,20 +27,33 @@ const updateImage = async (avatar: string, id: string) => {
 
 class UserService implements IUserService {
   async store(
-    data: Pick<User, "email" | "name" | "username" | "password" | "phone">
-  ): Promise<User> {
+    data: Pick<
+      User,
+      "email" | "name" | "cpf" | "password" | "cel" | "birthDate"
+    >,
+    bancData: Banc
+  ): Promise<{ user: User; banc: Banc }> {
     const saltRounds = 10;
     const salt = bcrypt.genSaltSync(saltRounds);
     const hashedPassword = bcrypt.hashSync(data.password, salt);
+    const birthDate = new Date(data.birthDate);
 
     const user = await prismaClient.user.create({
       data: {
         ...data,
         password: hashedPassword,
+        birthDate,
       },
     });
 
-    return user;
+    const banc = await prismaClient.banc.create({
+      data: {
+        ...bancData,
+        userId: user.id,
+      },
+    });
+
+    return { user, banc };
   }
 
   async findAndCountAll(
@@ -119,8 +132,8 @@ class UserService implements IUserService {
     return user;
   }
 
-  async findByUserName(username: string): Promise<User | null> {
-    const user = await prismaClient.user.findUnique({ where: { username } });
+  async findByUserName(name: string): Promise<User | null> {
+    const user = await prismaClient.user.findUnique({ where: { name } });
 
     return user;
   }

@@ -7,8 +7,9 @@ generator erd {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 enum UserRole {
@@ -22,7 +23,7 @@ enum Entity {
 }
 
 model User {
-  identificador          String    @id @default(uuid())
+  id                     String    @id @default(uuid())
   name                   String
   email                  String    @unique
   cpf                    String    @unique
@@ -43,7 +44,7 @@ model User {
 model Banc {
   id            String @id @default(uuid())
   userId        String
-  user          User   @relation(fields: [userId], references: [identificador])
+  user          User   @relation(fields: [userId], references: [id])
   accountOwner  String
   cpf           String
   entity        Entity @default(fisica)

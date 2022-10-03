@@ -29,4 +29,8 @@ routes.get("/auth/jwt/:token", (req: Request, res: Response) =>
   authController.getUserByToken(req, res)
 );
 
+routes.post("/auth/register", (req: Request, res: Response) =>
+  authController.register(req, res)
+);
+
 export default routes;

@@ -1,15 +1,19 @@
 /* eslint-disable no-unused-vars */
-import { User } from "@prisma/client";
+import { User, Banc } from "@prisma/client";
 import { UserRows } from "../types/UserRows";
 
 export interface IUserService {
   store(
-    data: Pick<User, "name" | "username" | "email" | "phone" | "password">
-  ): Promise<User>;
+    data: Pick<
+      User,
+      "name" | "cpf" | "email" | "cel" | "birthDate" | "password"
+    >,
+    bancData: Banc
+  ): Promise<{ user: User; banc: Banc }>;
   findAndCountAll(page: number, pageSize: number, q: string): Promise<UserRows>;
   findByPk(id: User["id"]): Promise<User | null>;
   findByEmail(email: User["email"]): Promise<User | null>;
-  findByUserName(username: User["username"]): Promise<User | null>;
+  findByUserName(username: User["name"]): Promise<User | null>;
   updateAvatar(id: User["id"], avatar: User["avatar"]): Promise<User | null>;
   update(id: string, data: User): Promise<User | null>;
   updateForgottenPassword(

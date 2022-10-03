@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import bcrypt from "bcrypt";
 import { faker } from "@faker-js/faker";
 import prismaClient from "../src/database";
@@ -9,10 +10,12 @@ import prismaClient from "../src/database";
     const user = await prismaClient.user.create({
       data: {
         name: "Admin",
-        username: "admin",
         email: "reciclaadmin@email.com",
         role: "Admin",
         password: bcrypt.hashSync(generatedPassword, 10),
+        birthDate: new Date("1998-07-30"),
+        cpf: "123.456.789-10",
+        cel: "(99) 99999-9999",
       },
     });
 

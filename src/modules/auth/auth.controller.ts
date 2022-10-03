@@ -1,7 +1,9 @@
+/* eslint-disable no-console */
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
 import { Request, Response } from "express";
+import { StatusCodes } from "http-status-codes";
 import generateToken from "../../helpers/generateToken";
 import Mail from "../../helpers/Mail";
 import UserService from "../user/user.service";
@@ -138,6 +140,27 @@ class AuthController {
       return res
         .status(500)
         .json({ message: "Erro ao enviar a nova senha para o usuário." });
+    }
+  }
+
+  async register(req: Request, res: Response) {
+    try {
+      const { userData, bancData } = req.body;
+
+      const emailExists = await this.userService.findByEmail(userData.email);
+
+      if (emailExists)
+        return res
+          .status(StatusCodes.BAD_REQUEST)
+          .json({ message: "Email ja existe!" });
+
+      const { user, banc } = await this.userService.store(userData, bancData);
+      return res.status(StatusCodes.CREATED).json({ user, banc });
+    } catch (e: Error | any) {
+      console.log(e);
+      return res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .json({ message: e.message });
     }
   }
 }

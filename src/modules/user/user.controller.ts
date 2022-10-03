@@ -145,19 +145,6 @@ class UserController {
           return res.status(403).json({ message: "E-mail já cadastrado." });
       }
 
-      if (data.username) {
-        const userNameChanged =
-          data.username && user?.username !== data.username;
-        const userNameExists = await this.userService.findByUserName(
-          data.username
-        );
-
-        if (userNameChanged && userNameExists)
-          return res
-            .status(403)
-            .json({ message: "Nome de usuário já cadastrado." });
-      }
-
       await this.userService.update(id, data);
 
       user = await this.userService.findByPk(id);
