@@ -13,7 +13,6 @@ export interface IUserService {
   findAndCountAll(page: number, pageSize: number, q: string): Promise<UserRows>;
   findByPk(id: User["id"]): Promise<User | null>;
   findByEmail(email: User["email"]): Promise<User | null>;
-  findByUserName(username: User["name"]): Promise<User | null>;
   updateAvatar(id: User["id"], avatar: User["avatar"]): Promise<User | null>;
   update(id: string, data: User): Promise<User | null>;
   updateForgottenPassword(

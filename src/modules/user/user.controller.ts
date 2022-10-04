@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Request, Response } from "express";
 import UserService from "./user.service";
 import generateToken from "../../helpers/generateToken";
@@ -11,26 +12,19 @@ class UserController {
 
   async store(req: Request, res: Response): Promise<Response> {
     try {
-      const data = req.body;
+      const { userData, bancData } = req.body;
 
-      const emailExists = await this.userService.findByEmail(data.email);
-      const usernameExists = await this.userService.findByUserName(
-        data.username
-      );
+      const emailExists = await this.userService.findByEmail(userData.email);
 
       if (emailExists)
         return res.status(403).json({ message: "E-mail já cadastrado." });
 
-      if (usernameExists)
-        return res
-          .status(403)
-          .json({ message: "Nome de usuário já cadastrado." });
-
-      const user = await this.userService.store(data);
+      const { user, banc } = await this.userService.store(userData, bancData);
 
       return res.status(201).json({
         message: "Usuário adicionado.",
         user,
+        banc,
         token: generateToken({ id: user?.id }),
       });
     } catch (e) {

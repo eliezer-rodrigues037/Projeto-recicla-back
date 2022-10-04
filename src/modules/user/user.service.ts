@@ -132,12 +132,6 @@ class UserService implements IUserService {
     return user;
   }
 
-  async findByUserName(name: string): Promise<User | null> {
-    const user = await prismaClient.user.findUnique({ where: { name } });
-
-    return user;
-  }
-
   async updateAvatar(id: string, avatar: User["avatar"]): Promise<User | null> {
     const user = await this.findByPk(id);
 
