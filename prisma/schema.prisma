@@ -54,3 +54,12 @@ model Banc {
   accountNumber String
   accountDg     String
 }
+
+model Materials {
+  id         String   @id @default(uuid())
+  name       String
+  price      Decimal
+  status     Boolean  @default(true)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
