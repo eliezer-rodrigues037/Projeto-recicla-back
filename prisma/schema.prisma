@@ -36,7 +36,7 @@ model User {
   password_reset_expires DateTime?
   created_at             DateTime  @default(now())
   updated_at             DateTime  @updatedAt
-  Banc                   Banc[]
+  banc                   Banc[]
 
   @@map("users")
 }
@@ -53,13 +53,17 @@ model Banc {
   agencyDg      String
   accountNumber String
   accountDg     String
+
+  @@map("banc")
 }
 
-model Materials {
+model Material {
   id         String   @id @default(uuid())
-  name       String
-  price      Decimal
+  name       String   @unique
+  price      Decimal  @db.Decimal(5, 2)
   status     Boolean  @default(true)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+
+  @@map("materials")
 }

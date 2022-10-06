@@ -77,3 +77,28 @@ import prismaClient from "../src/database";
     await prismaClient.$disconnect();
   }
 })();
+
+(async function main() {
+  try {
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < 10; i++) {
+      const material = await prismaClient.material.create({
+        data: {
+          name: faker.science.chemicalElement().name,
+          price: faker.finance.amount(5, 50, 2),
+        },
+      });
+    }
+
+    // WIP
+    // usersDoc = JSON.stringify(users);
+    // fs.writeFile("../docs/usersDoc.json", usersDoc, "utf-8", () =>
+    //   console.log("created!")
+    // );
+  } catch (e) {
+    console.log(e);
+    process.exit(1);
+  } finally {
+    await prismaClient.$disconnect();
+  }
+})();
