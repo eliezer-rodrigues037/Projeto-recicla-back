@@ -73,6 +73,35 @@ class MaterialsService implements IMaterialsService {
 
     return material || null;
   }
+
+  async findByPk(id: string): Promise<Material | null> {
+    const material = await prismaClient.material.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return material || null;
+  }
+
+  async update(id: string, data: Material): Promise<Material | null> {
+    const material = await prismaClient.material.update({
+      where: {
+        id,
+      },
+      data: {
+        ...data,
+      },
+    });
+
+    return material || null;
+  }
+
+  async destroy(id: string): Promise<void> {
+    const material = await this.findByPk(id);
+
+    if (material) await prismaClient.user.delete({ where: { id } });
+  }
 }
 
 export default MaterialsService;

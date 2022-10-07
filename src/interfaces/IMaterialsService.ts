@@ -12,4 +12,7 @@ export interface IMaterialsService {
     query: string
   ): Promise<MaterialsRows>;
   findByName(name: Material["name"]): Promise<Material | null>;
+  findByPk(id: Material["id"]): Promise<Material | null>;
+  update(id: string, data: Material): Promise<Material | null>;
+  destroy(id: string): Promise<void>;
 }

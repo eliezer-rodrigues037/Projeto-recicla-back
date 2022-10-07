@@ -62,6 +62,42 @@ class MaterialsController {
         .json({ message: "Erro ao adicionar material.", error: e });
     }
   }
+
+  async update(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params;
+      const data = req.body;
+      let material;
+
+      material = await this.materialsService.findByPk(id);
+
+      if (material == null)
+        return res
+          .status(StatusCodes.NOT_FOUND)
+          .json({ message: `Material não encontrado para o id: ${id}` });
+
+      if (material.name) {
+        const nameChanged = material.name !== data.name;
+        const nameExists = await this.materialsService.findByName(data.name);
+
+        if (nameChanged && nameExists)
+          return res
+            .status(StatusCodes.FORBIDDEN)
+            .json({ message: "Nome ja existe." });
+      }
+      await this.materialsService.update(id, data);
+      material = await this.materialsService.findByPk(id);
+
+      return res
+        .status(StatusCodes.OK)
+        .json({ message: "Usuário atualziado.", material });
+    } catch (e) {
+      console.log(e);
+      return res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .json({ message: "Erro ao atualizar material" });
+    }
+  }
 }
 
 export default MaterialsController;

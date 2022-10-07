@@ -17,4 +17,8 @@ routes.post(
   (req: Request, res: Response) => materialsController.store(req, res)
 );
 
+routes.put("/materials/:id", (req: Request, res: Response) =>
+  materialsController.update(req, res)
+);
+
 export default routes;
