@@ -21,4 +21,8 @@ routes.put("/materials/:id", (req: Request, res: Response) =>
   materialsController.update(req, res)
 );
 
+routes.delete("/materials/:id", (req: Request, res: Response) =>
+  materialsController.destroy(req, res)
+);
+
 export default routes;

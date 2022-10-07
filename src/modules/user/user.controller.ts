@@ -1,3 +1,4 @@
+import { StatusCodes } from "http-status-codes";
 /* eslint-disable no-console */
 import { Request, Response } from "express";
 import UserService from "./user.service";
@@ -160,7 +161,7 @@ class UserController {
 
       const user = await this.userService.findByPk(id);
 
-      if (user === null) return res.status(204).json();
+      if (user === null) return res.status(StatusCodes.NOT_FOUND).json();
 
       await this.userService.destroy(id);
 

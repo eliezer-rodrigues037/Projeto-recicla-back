@@ -98,6 +98,25 @@ class MaterialsController {
         .json({ message: "Erro ao atualizar material" });
     }
   }
+
+  async destroy(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+
+      const material = await this.materialsService.findByPk(id);
+
+      if (material == null) return res.status(StatusCodes.NOT_FOUND).json();
+
+      await this.materialsService.destroy(id);
+
+      return res.status(StatusCodes.OK).json({ message: "Material removido." });
+    } catch (e) {
+      console.log(e);
+      return res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .json({ message: "Erro ao deletar material" });
+    }
+  }
 }
 
 export default MaterialsController;

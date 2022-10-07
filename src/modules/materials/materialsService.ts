@@ -100,7 +100,7 @@ class MaterialsService implements IMaterialsService {
   async destroy(id: string): Promise<void> {
     const material = await this.findByPk(id);
 
-    if (material) await prismaClient.user.delete({ where: { id } });
+    if (material) await prismaClient.material.delete({ where: { id } });
   }
 }
 
