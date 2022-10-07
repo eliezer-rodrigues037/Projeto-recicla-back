@@ -1,3 +1,5 @@
+import { Material } from "@prisma/client";
+import { Decimal } from "@prisma/client/runtime";
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import MaterialsService from "./materialsService";
@@ -33,16 +35,21 @@ class MaterialsController {
 
   async store(req: Request, res: Response): Promise<Response> {
     try {
-      const { materialData } = req.body;
+      const { name, price, status } = req.body;
 
-      const materialExists = await this.materialsService.findByName(
-        materialData.name
-      );
+      const materialExists = await this.materialsService.findByName(name);
+
+      const materialData: Pick<Material, "name" | "price" | "status"> = {
+        name,
+        price: new Decimal(Number(price)),
+        status,
+      };
 
       if (materialExists)
         return res
           .status(StatusCodes.UNAUTHORIZED)
           .json({ message: "Material ja cadastrado." });
+
       const material = await this.materialsService.store(materialData);
 
       return res
