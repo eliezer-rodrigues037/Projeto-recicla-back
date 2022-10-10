@@ -36,15 +36,15 @@ model User {
   password_reset_expires DateTime?
   created_at             DateTime  @default(now())
   updated_at             DateTime  @updatedAt
-  banc                   Banc[]
+  bancId                 String
+  banc                   Banc      @relation(fields: [bancId], references: [id])
 
   @@map("users")
 }
 
 model Banc {
   id            String @id @default(uuid())
-  userId        String
-  user          User   @relation(fields: [userId], references: [id])
+  user          User[]
   accountOwner  String
   cpf           String
   entity        Entity @default(fisica)
